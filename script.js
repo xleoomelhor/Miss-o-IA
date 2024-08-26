@@ -15,15 +15,15 @@ const perguntas = [
     {
         enunciado: "Você acredita que o sistema de cotas é justo?",
         alternativas: [
-            "Sim, pois serve muito bem como uma inclusão e compensasão histórica.",
+            "Sim, pois serve muito bem como uma inclusão e compensação histórica.",
             "Não! A Cota Racial demonstra inferioridade a certas etnias/raças em inclusões sociais e profissionais, aonde pessoas ganham sem mérito próprio.",
         ]
     },
     {
-        enunciado: "Para você, as Cotas para as universidade, irão ajudar a diminuir o racismo e dicriminação?",
+        enunciado: "Para você, as Cotas para as universidades irão ajudar a diminuir o racismo e discriminação?",
         alternativas: [
-            "Sim, pois com essas oportunidade poderão incluir outras pessoas  a grandes instituições de ensino a fim de terem uma boa educação e consequentemente diminuir a discriminação.",
-            "Não. Mesmo tendo oportunidades para se adentrarem a grandes instituições de ensino, isso não diminuiria a dicriminação social, e também, de certo modo, poderia até aumentar a discriminação."
+            "Sim, pois com essas oportunidades poderão incluir outras pessoas a grandes instituições de ensino a fim de terem uma boa educação e consequentemente diminuir a discriminação.",
+            "Não. Mesmo tendo oportunidades para se adentrarem a grandes instituições de ensino, isso não diminuiria a discriminação social, e também, de certo modo, poderia até aumentar a discriminação."
         ]
     },
     {
@@ -36,7 +36,6 @@ const perguntas = [
 ];
 
 let atual = 0;
-let perguntaAtual;
 let historiaFinal = "";
 
 function mostraPergunta() {
@@ -44,24 +43,23 @@ function mostraPergunta() {
         mostraResultado();
         return;
     }
-    perguntaAtual = perguntas[atual];
+    const perguntaAtual = perguntas[atual];
     caixaPerguntas.textContent = perguntaAtual.enunciado;
     caixaAlternativas.textContent = "";
-    mostraAlternativas();
+    mostraAlternativas(perguntaAtual.alternativas);
 }
 
-function mostraAlternativas(){
-    for(const alternativa of perguntaAtual.alternativas) {
+function mostraAlternativas(alternativas) {
+    for (const alternativa of alternativas) {
         const botaoAlternativas = document.createElement("button");
-        botaoAlternativas.textContent = alternativa.texto;
+        botaoAlternativas.textContent = alternativa;
         botaoAlternativas.addEventListener("click", () => respostaSelecionada(alternativa));
         caixaAlternativas.appendChild(botaoAlternativas);
     }
 }
 
-function respostaSelecionada(opcaoSelecionada) {
-    const afirmacoes = opcaoSelecionada.afirmacao;
-    historiaFinal += afirmacoes + " ";
+function respostaSelecionada(alternativaSelecionada) {
+    historiaFinal += alternativaSelecionada + " ";
     atual++;
     mostraPergunta();
 }
